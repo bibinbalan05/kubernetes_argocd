@@ -47,5 +47,8 @@ spec:
           env:
             - name: ASPNETCORE_ENVIRONMENT
               value: Development
-            - name: ConnectionStrings__DefaultConnection
-              value: Server=sql-server-service,1433;Database=master;User Id=sa;Password=P@ssw0rd123!;TrustServerCertificate=True
+              - name: ConnectionStrings__DefaultConnection
+                valueFrom:
+                  secretKeyRef:
+                    name: sql-secret
+                    key: CONNECTION_STRING
