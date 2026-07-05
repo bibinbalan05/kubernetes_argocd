@@ -1,0 +1,22 @@
+version: "3.9"
+
+services:
+  productapi:
+    image: productapi:local
+    build:
+      context: .
+      dockerfile: src/ProductApi/Dockerfile
+    ports:
+      - "5100:8080"
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+
+  orderapi:
+    image: orderapi:local
+    build:
+      context: .
+      dockerfile: src/OrderApi/Dockerfile
+    ports:
+      - "5200:8080"
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development

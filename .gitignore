@@ -1,0 +1,20 @@
+# .NET build artifacts
+**/bin/
+**/obj/
+**/out/
+
+# Visual Studio / VS Code
+.vs/
+.vscode/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Local environment files
+.env
+*.local

@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sql-server
+  labels:
+    app: sql-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sql-server
+  template:
+    metadata:
+      labels:
+        app: sql-server
+    spec:
+      containers:
+        - name: sql-server
+          image: mcr.microsoft.com/mssql/server:2019-latest
+          ports:
+            - containerPort: 1433
+          env:
+            - name: ACCEPT_EULA
+              value: "Y"
+            - name: MSSQL_PID
+              valueFrom:
+                configMapKeyRef:
+                  name: sql-config
+                  key: MSSQL_PID
+            - name: SA_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: sql-secret
+                  key: SA_PASSWORD
